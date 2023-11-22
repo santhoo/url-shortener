@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 
-import { fullDomain } from 'util/general'
 import { handle } from 'util/handlers'
 
 export default function AlertExclude({
@@ -23,6 +22,7 @@ export default function AlertExclude({
 	modalOnClose,
 	item,
 	refresh,
+	appDomain,
 }) {
 	const cancelRef = useRef()
 
@@ -68,30 +68,19 @@ export default function AlertExclude({
 		>
 			<AlertDialogOverlay bg="blackAlpha.800">
 				<AlertDialogContent>
-					<AlertDialogHeader>
-						Excluir Redirecionamento
-					</AlertDialogHeader>
+					<AlertDialogHeader>Excluir Redirecionamento</AlertDialogHeader>
 
 					<AlertDialogBody>
 						<Text fontSize="lg" mb="4">
-							Tem certeza que deseja excluir o
-							redirecionamento?
+							Tem certeza que deseja excluir o redirecionamento?
 						</Text>
 
-						<Tag
-							size="lg"
-							colorScheme="red"
-							borderRadius="full"
-						>
-							{`${fullDomain}/${item.path}`}
+						<Tag size="lg" colorScheme="red" borderRadius="full">
+							{`${appDomain.url}/${item.path}`}
 						</Tag>
 					</AlertDialogBody>
 					<AlertDialogFooter pt="8">
-						<Button
-							ref={cancelRef}
-							size="lg"
-							onClick={onClose}
-						>
+						<Button ref={cancelRef} size="lg" onClick={onClose}>
 							Cancelar
 						</Button>
 						<Button

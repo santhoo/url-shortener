@@ -19,7 +19,6 @@ import {
 } from '@chakra-ui/react'
 
 import AlertExclude from 'components/AlertExclude'
-import { fullDomain } from 'util/general'
 import { handle } from 'util/handlers'
 
 export default function FormItem({
@@ -28,6 +27,7 @@ export default function FormItem({
 	onClose: modalOnClose,
 	initialRef,
 	refresh,
+	appDomain,
 }) {
 	const toast = useToast()
 
@@ -91,15 +91,12 @@ export default function FormItem({
 
 				if (formEdit && item) {
 					try {
-						const updated = await handle.update(
-							item,
-							values
-						)
+						const updated = await handle.update(item, values)
 						refresh()
 
 						toast({
 							title: 'Redirecionamento atualizado.',
-							description: `${fullDomain}/${updated.path}`,
+							description: `${appDomain.url}/${updated.path}`,
 							status: 'success',
 							duration: 2500,
 							isClosable: true,
@@ -119,15 +116,12 @@ export default function FormItem({
 						<Stack spacing={3} mb="4">
 							<InputGroup>
 								<InputLeftAddon pointerEvents="none">
-									{`${fullDomain}/`}
+									{`${appDomain.url}/`}
 								</InputLeftAddon>
 								<Field name="path">
 									{({ field, form }) => (
 										<FormControl
-											isInvalid={
-												form.errors.path &&
-												form.touched.path
-											}
+											isInvalid={form.errors.path && form.touched.path}
 										>
 											<Input
 												{...field}
@@ -135,20 +129,14 @@ export default function FormItem({
 												size="md"
 												ref={initialRef}
 											/>
-											<FormErrorMessage>
-												{form.errors.path}
-											</FormErrorMessage>
+											<FormErrorMessage>{form.errors.path}</FormErrorMessage>
 										</FormControl>
 									)}
 								</Field>
 							</InputGroup>
 							<Field name="url">
 								{({ field, form }) => (
-									<FormControl
-										isInvalid={
-											form.errors.url && form.touched.url
-										}
-									>
+									<FormControl isInvalid={form.errors.url && form.touched.url}>
 										<Input
 											{...field}
 											placeholder="https://www.url_de_destino.com"
@@ -162,34 +150,22 @@ export default function FormItem({
 											type="url"
 											size="md"
 										/>
-										<FormErrorMessage>
-											{form.errors.url}
-										</FormErrorMessage>
+										<FormErrorMessage>{form.errors.url}</FormErrorMessage>
 									</FormControl>
 								)}
 							</Field>
 
-							{formEdit &&
-								itemCreated !== '' &&
-								itemUpdated !== '' && (
-									<Box color="gray.500" pt="2">
-										<Text fontSize="xs">
-											Última edição: {itemUpdated}
-										</Text>
-										<Text fontSize="xs">
-											Criado em: {itemCreated}
-										</Text>
-									</Box>
-								)}
+							{formEdit && itemCreated !== '' && itemUpdated !== '' && (
+								<Box color="gray.500" pt="2">
+									<Text fontSize="xs">Última edição: {itemUpdated}</Text>
+									<Text fontSize="xs">Criado em: {itemCreated}</Text>
+								</Box>
+							)}
 						</Stack>
 					</ModalBody>
 					<ModalFooter>
 						{formEdit ? (
-							<Flex
-								justify="space-between"
-								direction="row"
-								width="100%"
-							>
+							<Flex justify="space-between" direction="row" width="100%">
 								<Button
 									colorScheme="red"
 									ml="0"
@@ -202,10 +178,7 @@ export default function FormItem({
 								<Button mr="4" onClick={modalOnClose}>
 									Cancelar
 								</Button>
-								<Tooltip
-									isDisabled={props.dirty}
-									label="Edite os campos"
-								>
+								<Tooltip isDisabled={props.dirty} label="Edite os campos">
 									<Button
 										colorScheme="blue"
 										isLoading={props.isSubmitting}
@@ -217,18 +190,11 @@ export default function FormItem({
 								</Tooltip>
 							</Flex>
 						) : (
-							<Flex
-								justify="end"
-								direction="row"
-								width="100%"
-							>
+							<Flex justify="end" direction="row" width="100%">
 								<Button mr="4" onClick={modalOnClose}>
 									Cancelar
 								</Button>
-								<Tooltip
-									isDisabled={props.dirty}
-									label="Preencha os campos"
-								>
+								<Tooltip isDisabled={props.dirty} label="Preencha os campos">
 									<Button
 										colorScheme="green"
 										isLoading={props.isSubmitting}
@@ -249,6 +215,7 @@ export default function FormItem({
 							modalOnClose={modalOnClose}
 							item={formEdit && item?.id && item}
 							refresh={refresh}
+							appDomain={appDomain}
 						/>
 					)}
 				</Form>

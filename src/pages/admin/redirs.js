@@ -17,14 +17,14 @@ import {
 	Spinner,
 } from '@chakra-ui/react'
 
-import { fullDomain } from 'util/general'
+import Domain from 'util/general'
 import { handle } from 'util/handlers'
 import ModalCreate from 'components/ModalCreate'
 import ModalEdit from 'components/ModalEdit'
 import RedirCard from 'components/RedirCard'
 import { useLoadingContext } from 'context/loading'
 
-export default function RedirPage({ routesList }) {
+export default function RedirPage({ routesList, domain }) {
 	const router = useRouter()
 	const refreshData = () => {
 		router.replace(router.asPath)
@@ -67,26 +67,17 @@ export default function RedirPage({ routesList }) {
 	return (
 		<>
 			<Head>
-				<title>
-					Gerenciar redirecionamentos - Neopro Shortlinks
-				</title>
+				<title>Gerenciar redirecionamentos - URL Shortener</title>
 			</Head>
 
 			<Container maxW="4xl" py="16">
 				<Stack direction="column" align="flex-end">
 					<Box as="header" w="100%">
-						<Heading
-							as="h1"
-							size={{ base: 'xl', md: '2xl' }}
-						>
+						<Heading as="h1" size={{ base: 'xl', md: '2xl' }}>
 							Redirecionamentos
 						</Heading>
-						<Text
-							color="gray.400"
-							fontSize="lg"
-							fontWeight="medium"
-						>
-							{fullDomain}
+						<Text color="gray.400" fontSize="lg" fontWeight="medium">
+							{domain.url}
 						</Text>
 					</Box>
 
@@ -101,30 +92,20 @@ export default function RedirPage({ routesList }) {
 
 					<Divider pt={{ base: 4, md: 8 }} />
 
-					<Flex
-						as="main"
-						pt={{ base: 4, md: 8 }}
-						w="100%"
-						direction="column"
-					>
+					<Flex as="main" pt={{ base: 4, md: 8 }} w="100%" direction="column">
 						{routesList.length > 0 ? (
 							routesList.map((item, key) => (
 								<RedirCard
 									key={key}
 									cardKey={key}
 									redir={item}
-									onClick={() =>
-										handleOpenModalEdit(item.id)
-									}
+									onClick={() => handleOpenModalEdit(item.id)}
+									appDomain={domain}
 								/>
 							))
 						) : (
 							<Box>
-								<Heading
-									textAlign="center"
-									color="gray.500"
-									fontSize="xl"
-								>
+								<Heading textAlign="center" color="gray.500" fontSize="xl">
 									Nenhum redirecionamento criado
 								</Heading>
 							</Box>
@@ -138,6 +119,7 @@ export default function RedirPage({ routesList }) {
 					isOpen={isOpenModalCreate}
 					onClose={onCloseModalCreate}
 					refresh={refreshData}
+					appDomain={domain}
 				/>
 			)}
 
@@ -148,6 +130,7 @@ export default function RedirPage({ routesList }) {
 					handleClose={handleCloseModalEdit}
 					editEl={editEl}
 					refresh={refreshData}
+					appDomain={domain}
 				/>
 			)}
 
@@ -163,11 +146,7 @@ export default function RedirPage({ routesList }) {
 						backdropFilter="auto"
 						backdropBlur="4px"
 					/>
-					<ModalContent
-						bg="transparent"
-						alignItems="center"
-						boxShadow="none"
-					>
+					<ModalContent bg="transparent" alignItems="center" boxShadow="none">
 						<Spinner size="xl" color="blue.500" />
 					</ModalContent>
 				</Modal>
@@ -183,6 +162,7 @@ export async function getServerSideProps() {
 	return {
 		props: {
 			routesList: redirs,
+			domain: Domain,
 		},
 	}
 }

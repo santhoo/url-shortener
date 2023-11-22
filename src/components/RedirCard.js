@@ -11,9 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { EditIcon, CopyIcon, CheckIcon } from '@chakra-ui/icons'
 
-import { domainPrefix, fullDomain } from 'util/general'
-
-export default function RedirCard({ redir, cardKey, ...props }) {
+export default function RedirCard({ redir, cardKey, appDomain, ...props }) {
 	// Estado de copy
 	const [copied, setCopied] = useBoolean(false)
 	const [copyKey, setCopyKey] = useControllableState({
@@ -56,7 +54,7 @@ export default function RedirCard({ redir, cardKey, ...props }) {
 							width="100%"
 							wrap="nowrap"
 						>
-							<Text color="gray.400">{domainPrefix}</Text>
+							<Text color="gray.400">{appDomain.host}</Text>
 							<Text
 								color="gray.900"
 								_groupHover={{
@@ -85,7 +83,7 @@ export default function RedirCard({ redir, cardKey, ...props }) {
 							<IconButton
 								aria-label="Copiar URL do redirecionamento"
 								onClick={(e) =>
-									handleClipboard(`${fullDomain}/${redir.path}`, cardKey, e)
+									handleClipboard(`${appDomain.url}/${redir.path}`, cardKey, e)
 								}
 								size={{ base: 'sm', md: 'md' }}
 								icon={

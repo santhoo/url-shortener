@@ -9,11 +9,7 @@ import {
 
 import FormItem from 'components/FormItem'
 
-export default function ModalCreate({
-	isOpen,
-	onClose,
-	refresh,
-}) {
+export default function ModalCreate({ isOpen, onClose, refresh, appDomain }) {
 	// Foco no campo de caminho ao abrir o modal
 	const initialRef = useRef()
 
@@ -26,15 +22,14 @@ export default function ModalCreate({
 		>
 			<ModalOverlay />
 			<ModalContent>
-				<ModalHeader>
-					Adicionar Redirecionamento
-				</ModalHeader>
+				<ModalHeader>Adicionar Redirecionamento</ModalHeader>
 				<ModalCloseButton />
 
 				<FormItem
 					onClose={onClose}
 					initialRef={initialRef}
 					refresh={refresh}
+					appDomain={appDomain}
 				/>
 			</ModalContent>
 		</Modal>

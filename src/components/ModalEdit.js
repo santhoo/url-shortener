@@ -15,6 +15,7 @@ export default function ModalEdit({
 	handleClose,
 	editEl,
 	refresh,
+	appDomain,
 }) {
 	// Foco no campo de caminho ao abrir o modal
 	const initialRef = useRef()
@@ -39,6 +40,7 @@ export default function ModalEdit({
 						item={editEl}
 						initialRef={initialRef}
 						refresh={refresh}
+						appDomain={appDomain}
 					/>
 				</ModalContent>
 			</Modal>
