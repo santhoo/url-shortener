@@ -3,7 +3,7 @@ export default function Custom404() {
 }
 
 export function getServerSideProps() {
-	// return { props: { error: '404' } }
+	return { props: { error: '404' } }
 
 	return {
 		redirect: {
