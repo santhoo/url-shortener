@@ -1,4 +1,4 @@
-import Domain from 'util/general'
+import { docAll } from 'util/firebase/docs'
 
 export const handle = {
 	create: handleCreate,
@@ -93,19 +93,8 @@ async function handleGet(id) {
 
 // Retorna todos os registros
 async function handleAll() {
-	const { url: BaseURL } = Domain
-	const response = await fetch(`${BaseURL}/api/route`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	})
+	// Only server side
+	const getAll = await docAll()
 
-	const { data } = await response.json()
-
-	if (response.status === 200) {
-		return data
-	} else {
-		throw new Error(data)
-	}
+	return getAll
 }
