@@ -4,9 +4,10 @@ export default function Custom404() {
 
 export function getServerSideProps() {
 	// return { props: { error: '404' } }
+
 	return {
 		redirect: {
-			destination: 'https://www.neopro.com.br',
+			destination: process.env.APP_ERROR_REDIR,
 			permanent: true,
 		},
 	}
