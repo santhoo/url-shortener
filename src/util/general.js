@@ -1,5 +1,5 @@
 const Domain = {
-	host: process.env.APP_HOSTNAME,
+	host: process.env.VERCEL_URL || process.env.APP_HOSTNAME,
 	url: process.env.APP_URL,
 }
 
