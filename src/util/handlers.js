@@ -1,3 +1,5 @@
+import Domain from 'util/general'
+
 export const handle = {
 	create: handleCreate,
 	update: handleUpdate,
@@ -91,7 +93,8 @@ async function handleGet(id) {
 
 // Retorna todos os registros
 async function handleAll() {
-	const response = await fetch(`${process.env.APP_URL}/api/route`, {
+	const { url: BaseURL } = Domain
+	const response = await fetch(`${BaseURL}/api/route`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
