@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: 'AIzaSyBBNkc1jN6u1oYiZdUrYb9VSYOUljKPa4M',
-	authDomain: 'neopro-shortlink.firebaseapp.com',
-	projectId: 'neopro-shortlink',
-	storageBucket: 'neopro-shortlink.appspot.com',
-	messagingSenderId: '200485905422',
-	appId: '1:200485905422:web:c4ea9ce755b6aa05c0485f',
+	apiKey: proccess.env.FB_API_KEY,
+	authDomain: proccess.env.FB_AUTH_DOMAIN,
+	projectId: proccess.env.FB_PROJECT_ID,
+	storageBucket: proccess.env.FB_STORAGE_BUCKET,
+	messagingSenderId: proccess.env.FB_MESSAGING_SENDER_ID,
+	appId: proccess.env.FB_APP_ID,
 }
 
 // Initialize Firebase
