@@ -19,7 +19,7 @@ export async function getServerSideProps() {
 
 	return {
 		props: {
-			domain: Domain(),
+			domain: Domain,
 		},
 	}
 }
