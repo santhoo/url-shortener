@@ -1,0 +1,52 @@
+[
+  {
+    "name": "daniel-malgarin",
+    "firstName": "Daniel",
+    "lastName": "Malgarin",
+    "fullName": "Daniel Malgarin",
+    "avatarFile": "1633021746016.jpeg",
+    "about": "{textin}",
+    "links":[
+      {
+        "title": "Chama no Whats",
+        "url": "https://api.whatsapp.com/send?phone=5511999404485&text=Oi,%20Dani!%20Salva%20meu%20contato",
+        "type": "whatsapp"
+      },
+      {
+        "title": "Add no LinkedIn",
+        "url": "https://www.linkedin.com/in/danielmalgarin/",
+        "type": "linkedin"
+      },
+      {
+        "title": "Manda um e-mail",
+        "url": "mailto:daniel@neopro.com.br",
+        "type": "email"
+      }
+    ]
+  },
+    {
+      "name": "santiago-risden",
+      "firstName":"Santiago",
+      "lastName":"Risden",
+      "fullName": "Santiago Risden",
+      "avatarFile": "foto_risada.jpg",
+      "about": "Sou responsável pela Gestão de Produto. Entendendo as necessidades dos usuários, transformando em soluções.",
+      "links": [
+        {
+          "title": "Chama no Whats",
+          "url": "https://api.whatsapp.com/send?phone=5547920010123&text=Oi,%20Santo!%20Salva%20meu%20contato",
+          "type": "whatsapp"
+        },
+        {
+          "title": "Add no LinkedIn",
+          "url": "https://www.linkedin.com/in/santiago-sipoli/",
+          "type": "linkedin"
+        },
+        {
+          "title": "Manda um e-mail",
+          "url": "mailto:santo@neopro.com.br",
+          "type": "email"
+        }
+      ]
+    }
+]
