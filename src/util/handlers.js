@@ -91,7 +91,7 @@ async function handleGet(id) {
 
 // Retorna todos os registros
 async function handleAll() {
-	const response = await fetch(`${hostname}/api/route`, {
+	const response = await fetch(`${process.env.APP_URL}/api/route`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
@@ -106,8 +106,3 @@ async function handleAll() {
 		throw new Error(data)
 	}
 }
-
-const hostname =
-	process.env.NODE_ENV === 'development'
-		? `http://${process.env.VERCEL_URL}`
-		: `https://${process.env.VERCEL_URL}`
