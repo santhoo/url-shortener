@@ -1,6 +1,7 @@
 import Domain from 'util/general'
 
 export default function Teste(props) {
+	console.log('props:', props)
 	return (
 		<ul>
 			<li>
@@ -14,11 +15,11 @@ export default function Teste(props) {
 }
 
 export async function getServerSideProps() {
-	console.log('Domain: ', Domain)
+	console.log('Domain: ', Domain())
 
 	return {
 		props: {
-			...Domain,
+			domain: Domain(),
 		},
 	}
 }
