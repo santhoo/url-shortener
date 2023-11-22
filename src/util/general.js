@@ -1,4 +1,6 @@
-const domainPrefix = 'neo.pro.br'
-const fullDomain = `https://${domainPrefix}`
+const Domain = {
+	host: process.env.APP_HOSTNAME,
+	url: process.env.APP_URL,
+}
 
-export { domainPrefix, fullDomain }
+export default Domain
