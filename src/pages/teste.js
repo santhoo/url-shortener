@@ -5,17 +5,17 @@ export default function Teste(props) {
 	return (
 		<ul>
 			<li>
-				APP_HOSTNAME: <strong>{props.host}</strong>
+				APP_HOSTNAME: <strong>{props.domain.host}</strong>
 			</li>
 			<li>
-				APP_URL: <strong>{props.url}</strong>
+				APP_URL: <strong>{props.domain.url}</strong>
 			</li>
 		</ul>
 	)
 }
 
 export async function getServerSideProps() {
-	console.log('Domain: ', Domain())
+	console.log('Domain: ', Domain)
 
 	return {
 		props: {
