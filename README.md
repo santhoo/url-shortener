@@ -5,7 +5,7 @@ Qualquer link de erro será redirecionado para o site padrão.
 
 Os links são armazenados no Firestore, do Firebase.
 
-Para visualizar o quiz em funcionamento [clique aqui](https://detran-quiz.vercel.app/).
+Para visualizar o gerenciador de URLs em funcionamento [clique aqui](https://santho-url-shortener.vercel.app/admin/redirs).
 
 ## Licença
 
