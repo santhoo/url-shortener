@@ -157,7 +157,6 @@ export default function RedirPage({ routesList, domain }) {
 
 export async function getServerSideProps() {
 	const redirs = await handle.all()
-	// console.log('server redirs: ', redirs)
 
 	return {
 		props: {
